@@ -1,0 +1,253 @@
+openapi: 3.0.3
+info:
+  description: >-
+    API endpoint for Udaconnect app
+  version: 1.0.0
+  title: UdaConnect API endpoint
+paths:
+  /api/persons:
+    get:
+      summary: Retrieve all persons
+      description: Retrieves all persons stored in the database
+      responses:
+        '200':
+          description: Successfully retrieved all persons
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+    post:
+      summary: Creates a person in the database
+      description: Adds a person to the database
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+      responses:
+        '200':
+          description: Successfully add a person
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+  /api/persons/{person_id}:
+    get:
+      summary: Retrieve a person from the database
+      description: By passing in a person id you retrieve the person information
+      parameters:
+        - in: path
+          description: Unique ID for a given Person
+          name: person_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved a person
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+  /api/persons/{person_id}/connection:
+    get:
+      summary: Retrieve persons in the time and range requested
+      description: By passing in the person id, start and end dates, and distanve you retrieve persons location information
+      parameters:
+        - in: path
+          description: Unique ID for a given Person
+          name: person_id
+          required: true
+          schema:
+            type: integer
+        - in: query
+          description: Lower bound of date range
+          name: start_date
+          required: true
+          schema:
+            type: string
+        - in: query
+          description: Upper bound of date range
+          name: end_date
+          required: true
+          schema:
+            type: string
+        - in: query
+          description: The distance between locations and connections
+          name: distance
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get a specific Connections per Person
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Connection'
+        '400':
+          description: Bad Request
+  /api/locations:
+    post:
+      summary: Creates a location in the database
+      description: Adds a location to the database
+      requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+      responses:
+        '200':
+          description: Successfully retrieved a location
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+  /api/locations/{locations_id}:
+    get:
+      summary: Retrieve a location from the database
+      operationId: getLocation
+      description: By passing in a location id you retrieve the location information
+      parameters:
+        - in: path
+          description: Unique ID for a given Location
+          name: locations_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved a location
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+  /v2/api/persons:
+    get:
+      summary: Retrieve all persons
+      description: Retrieves all persons stored in the database
+      responses:
+        '200':
+          description: Successfully retrieved all persons
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+    post:
+      summary: Creates a person in the database
+      description: Adds a person to the database
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+      responses:
+        '200':
+          description: Successfully add a person
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+  /v2/api/persons/{person_id}:
+    get:
+      summary: Retrieve a person from the database
+      description: By passing in a person id you retrieve the person information
+      parameters:
+        - in: path
+          description: Unique ID for a given Person
+          name: person_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved a person
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    Person:
+      type: object
+      required:
+        - id
+        - first_name
+        - last_name
+        - company_name
+      properties:
+        id:
+          type: integer
+          example: '8'
+        first_name:
+          type: string
+          example: Paul
+        last_name:
+          type: string
+          example: Badman
+        company_name:
+          type: string
+          example: Paul Badman & Associates
+    Connection:
+      type: object
+      properties:
+        location:
+          $ref: '#/components/schemas/Location'
+        person:
+          $ref: '#/components/schemas/Person'
+      required:
+        - location
+        - person
+    Location:
+      type: object
+      properties:
+        location_id:
+          type: integer
+          example: 29
+        person_id:
+          type: integer
+          example: 1
+        longitude:
+          type: string
+          example: '42.9435345'
+        latitude:
+          type: string
+          example: "-12.4234234"
+        creation_time:
+          type: object
+      required:
+        - id
+        - person_id
+        - longitude
+        - latitude
+

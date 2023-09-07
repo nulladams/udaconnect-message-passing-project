@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "39ff358c-3be3-421a-8c12-94870161150f",
+		"name": "postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Retrieve all persons",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:30001/api/persons",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve a person",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "localhost:30001/api/persons/1",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"persons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve a person v2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "localhost:30014/v2/api/persons/5",
+					"host": [
+						"localhost"
+					],
+					"port": "30014",
+					"path": [
+						"v2",
+						"api",
+						"persons",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve all persons v2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/atom+xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:30014/v2/api/persons",
+					"host": [
+						"localhost"
+					],
+					"port": "30014",
+					"path": [
+						"v2",
+						"api",
+						"persons"
+					]
+				},
+				"description": "Retrieve all persons using person microservice"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve a location",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:30001/api/locations/29",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"locations",
+						"29"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve a connection",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "localhost:30001/api/persons/1?start_date=2020-08-10&end_date=2020-08-20&distance=5",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"persons",
+						"1"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2020-08-10"
+						},
+						{
+							"key": "end_date",
+							"value": "2020-08-20"
+						},
+						{
+							"key": "distance",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

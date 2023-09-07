@@ -1,0 +1,16 @@
+1. Person API
+    I've choose to refactor the person api as a microservice because it has less dependencies in relation of other parts of the application, so more decoupled, and it will have less donwstream effects.
+    Also working with microservices and containers gives us the ability of parallel development, being able to work with more teams, and so faster, reducing the application delivery time.
+    With containers the development is modular, so the code of one team will not effect in the code of other teams.
+    Other advantage is the fact that containers and microservices allow small and faster deployments, not being necessary the deployment of the whole application. This will also reduce or avoid the application downtime.
+    Pros and cons of microservices:
+    Cons: At the beggining, microservices can increase cost and complexity
+    Pros: Decoupling, parallel development, faster development and deployment, scalability, availability, performance
+
+2. gRPC Location Client and Server
+    I've created the location microservice using the gRPC protocol, as the location of each person is sent in high frequency.
+    gRPC protocol leverages HTTP/2 for transporting messages, offering more security and performance.
+
+3. Kafka Location Consumer and Producer
+    I've created the location consumer microservice with Kafka as a way to decouple the gRPC interface from the database.
+    This is also a greate way to improve performance for storing data. as Kafka can support a large volume of data, and also availability.

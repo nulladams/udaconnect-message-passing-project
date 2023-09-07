@@ -1,0 +1,23 @@
+### gRPC Location service
+
+Inside the file "modules/grpc-location-client/app/main.py" use the method sendmsg to send data 
+to the gRPC location server.
+
+Example:
+
+sendmsg(6, "42.9435345", "-12.4234234")
+
+
+###location.proto file
+
+syntax = "proto3";
+
+message LocationMessage {
+  int32 person_id = 1;
+  string latitude = 2;
+  string longitude = 3;
+}
+
+service LocationService {
+  rpc Create(LocationMessage) returns (LocationMessage);
+}

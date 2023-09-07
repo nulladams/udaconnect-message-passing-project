@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: grpc-location-client
+spec:
+  containers:
+  - image: leoadams/grpc-location-client:latest
+    name: grpc-location-client
+  restartPolicy: Never
